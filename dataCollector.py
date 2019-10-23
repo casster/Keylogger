@@ -1,4 +1,6 @@
 import re
+import matplotlib.pyplot as plt
+import numpy as np
 
 class KeyTime:
 
@@ -41,9 +43,21 @@ for item in items:
     else:
         freq[item.getKey()] = 1
 
+keyAxis = [] #x
+freqAxis = [] #y
 textFile = open("results.txt","w")
 for k,v in freq.items():
+    keyAxis.append(k)
+    freqAxis.append(str(v))
     line = ''
     line = line + k + " : " + str(v) + "\n"
     textFile.write(line)
 textFile.close()
+
+xAxis = np.arange(len(keyAxis))
+plt.bar(xAxis,freqAxis,color='blue',edgecolor='black')
+plt.xticks(xAxis, keyAxis)
+plt.xlabel('Key', fontsize=16)
+plt.ylabel('Num. times pressed', fontsize=16)
+plt.title('Bar chart of my keys pressed',fontsize=20)
+plt.show()
