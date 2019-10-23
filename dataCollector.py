@@ -1,6 +1,7 @@
 import re
 import matplotlib.pyplot as plt
 import numpy as np
+import operator
 
 class KeyTime:
 
@@ -28,9 +29,12 @@ for line in textFile:
     time = line[11:23]
     if line[25] == "'":
         key = line[26]
-    else:
-        key = line[25:]
+    elif line[25] == 'K':
+        key = line[29:]
         key = re.sub('\n','',key) #removes the newline char
+    elif line[25] == 'B':
+        key = line[32:]
+        key = re.sub('\n','',key)
     items.append(KeyTime(time,key))
 
 
@@ -43,19 +47,26 @@ for item in items:
     else:
         freq[item.getKey()] = 1
 
-keyAxis = [] #x
-freqAxis = [] #y
 textFile = open("results.txt","w")
 for k,v in freq.items():
-    keyAxis.append(k)
-    freqAxis.append(str(v))
     line = ''
     line = line + k + " : " + str(v) + "\n"
     textFile.write(line)
 textFile.close()
 
+
+sortedFreq = sorted(freq.items(), key=operator.itemgetter(1)) #sorts the dictionary
+
+keyAxis = [""]
+freqAxis = [0]
+for item in sortedFreq:
+    keyAxis.append(item[0])
+    freqAxis.append(item[1])
+
+
 xAxis = np.arange(len(keyAxis))
-plt.bar(xAxis,freqAxis,color='blue',edgecolor='black')
+plt.figure(figsize=(13,5))
+plt.bar(xAxis,freqAxis, align = 'center',color='blue',edgecolor='black',width=1)
 plt.xticks(xAxis, keyAxis)
 plt.xlabel('Key', fontsize=16)
 plt.ylabel('Num. times pressed', fontsize=16)
