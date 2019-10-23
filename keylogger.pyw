@@ -11,9 +11,10 @@ lastKey = 0
 
 def on_press(key):
     lastKey = str(key)
-    lastTime = datetime.datetime.now().time()
+    thisTime = datetime.datetime.now().time()
+    print(thisTime)
     logging.info(str(key))
-    print(key)
+    lastTime = thisTime
 
 def on_click(x, y, button, pressed):
     if pressed:
