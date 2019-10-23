@@ -14,7 +14,6 @@ def on_release(key):
 def on_click(x, y, button, pressed):
     if pressed:
         logging.info(str(button))
-        print (button)
 
 #allows mouse and keyboard listeners to be used concurrently
 with mouse.Listener(on_click=on_click) as listener:
