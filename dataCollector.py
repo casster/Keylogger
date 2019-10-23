@@ -40,29 +40,27 @@ for line in textFile:
 
 textFile.close()
 
-freq = {}
+freq = {} #creating frequency dictionary
 for item in items:
     if item.getKey() in freq:
         freq[item.getKey()] += 1
     else:
         freq[item.getKey()] = 1
 
-textFile = open("results.txt","w")
+textFile = open("results.txt","w") #outputting dictionary as a textfile
 for k,v in freq.items():
     line = ''
     line = line + k + " : " + str(v) + "\n"
     textFile.write(line)
 textFile.close()
 
-
 sortedFreq = sorted(freq.items(), key=operator.itemgetter(1)) #sorts the dictionary
 
 keyAxis = [""]
-freqAxis = [0]
+freqAxis = [0] #creating the axis list for the bar chart
 for item in sortedFreq:
     keyAxis.append(item[0])
     freqAxis.append(item[1])
-
 
 xAxis = np.arange(len(keyAxis))
 plt.figure(figsize=(13,5))
