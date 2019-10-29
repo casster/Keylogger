@@ -4,7 +4,7 @@ import logging
 import datetime
 
 log_dir = "./"
-logging.basicConfig(filename = ("keyLog.txt"), level=logging.DEBUG, format='%(asctime)s: %(message)s')
+logging.basicConfig(filename = ("KeyLog.txt"), level=logging.DEBUG, format='%(asctime)s: %(message)s')
 
 
 
