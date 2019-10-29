@@ -20,9 +20,12 @@ class KeyTime:
 
     def setTime(self,time):
         self.__time = time
-
-
-textFile  = open("keyLog.txt", "r")
+textFile=file()
+try:
+    textFile  = open("KeyLog.txt", "r")
+except FileNotFoundError:
+    print("File could not be found, making new file")
+    textFile=open(KeyLog.txt)
 
 items = []
 for line in textFile:
